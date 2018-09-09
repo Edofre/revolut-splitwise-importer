@@ -57,26 +57,6 @@ class ImportController extends Controller
             ]);
     }
 
-
-    /**
-     * @param Import $import
-     * @return mixed
-     * @throws \Exception
-     */
-    public function importRowData(Import $import)
-    {
-        $datatables = DataTables::of($import->importRows)
-            ->editColumn('action', function ($importRow) {
-                return view('import-rows.columns._action')
-                    ->with([
-                        'importRow' => $importRow,
-                    ]);
-            })
-            ->rawColumns(['action']);
-
-        return $datatables->make(true);
-    }
-
     /**
      * @param Import $import
      * @return \Illuminate\Http\RedirectResponse
@@ -89,5 +69,4 @@ class ImportController extends Controller
 
         return redirect()->route('import.show', ['import' => $import->id]);
     }
-
 }

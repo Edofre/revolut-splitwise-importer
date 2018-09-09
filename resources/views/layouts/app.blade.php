@@ -37,6 +37,8 @@
     </main>
 </div>
 
+@include('layouts.modals._delete')
+
 <!-- Javascript -->
 <script src="{{ asset('js/app.js') }}"></script>
 <!-- Hide the not import flash messages after 3 seconds -->

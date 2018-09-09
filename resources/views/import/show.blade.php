@@ -11,7 +11,6 @@
                 <i class="fas fa-file-import"></i> {{ $import->name }}
             </div>
             <div class="card-body">
-
                 <div class="row">
                     <div class="col-md-12">
                         <dl class="dl-horizontal">
@@ -23,7 +22,6 @@
 
                             <dt>{{ __('import.file_name') }}</dt>
                             <dd>{{ $import->file_name }}</dd>
-
                         </dl>
                     </div>
                 </div>
@@ -36,7 +34,6 @@
             </div>
         </div>
     </div>
-
 
     <div class="col-md-10">
         <div class="card mb-3">
@@ -72,7 +69,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @push('styles')

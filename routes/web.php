@@ -17,8 +17,8 @@ Route::get('/import/{import}/process', 'ImportController@process')
     ->name('import.process');
 
 // Datatable route for showing import rows
-Route::any('/import/{import}/rows/data/', 'ImportController@importRowData')
+Route::any('/import/{import}/rows/data/', 'ImportRowController@data')
     ->name('import.rows.data');
 
-Route::delete('/import/rows/{importRow}/destroy', 'ImportController@importRowDestroy')
+Route::delete('/import/rows/{importRow}/destroy', 'ImportRowController@destroy')
     ->name('import.rows.destroy');
