@@ -8,20 +8,28 @@
 */
 Route::get('/', 'ImportController@index')
     ->name('home');
-Route::post('/import', 'ImportController@upload')
-    ->name('import.upload');
 
-// Show results
-Route::get('/import/{import}', 'ImportController@show')
-    ->name('import.show');
-Route::get('/import/{import}/process', 'ImportController@process')
-    ->name('import.process');
+Route::group(['as' => 'import.'], function () {
+    // Process upload
+    Route::post('/import', 'ImportController@upload')
+        ->name('upload');
+    // Show Import model
+    Route::get('/import/{import}', 'ImportController@show')
+        ->name('show');
+    // Process import into import rows
+    Route::get('/import/{import}/process', 'ImportController@process')
+        ->name('process');
 
-// Datatable route for showing import rows
-Route::any('/import/{import}/rows/data/', 'ImportRowController@data')
-    ->name('import.rows.data');
+    // Data import rows
+    Route::any('/import/{import}/rows/data', 'ImportRowController@data')
+        ->name('rows.data');
+    // Delete rows
+    Route::delete('/import/rows/{importRow}/destroy', 'ImportRowController@destroy')
+        ->name('rows.destroy');
+    Route::delete('/import/rows/destroy', 'ImportRowController@destroyMultiple')
+        ->name('rows.destroy.multiple');
 
-Route::delete('/import/rows/{importRow}/destroy', 'ImportRowController@destroy')
-    ->name('import.rows.destroy');
-Route::delete('/import/rows/destroy', 'ImportRowController@destroyMultiple')
-    ->name('import.rows.destroy.multiple');
+    // Rows overview
+    Route::get('/import/{import}/rows/overview', 'ImportRowController@overview')
+        ->name('rows.overview');
+});

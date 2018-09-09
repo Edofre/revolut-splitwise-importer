@@ -9,6 +9,12 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-file-import"></i> {{ $import->name }}
+
+                <div class="pull-right">
+                    <a href="{{ route('import.rows.overview', ['import' => $import->id]) }}" class="btn btn-sm btn-success">
+                        <i class="fas fa-share-square"></i> {{ __('import.rows_overview') }}
+                    </a>
+                </div>
             </div>
             <div class="card-body">
                 <div class="row">

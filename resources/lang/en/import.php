@@ -13,6 +13,7 @@ return [
     'import_rows'            => 'Import rows',
     'import_name'            => 'Import :name',
     'file_upload_success'    => 'File successfully uploaded.',
+    'rows_overview'          => 'Import rows overview',
 
     // import/process
     'process_import_started' => 'Process import started',

@@ -22,7 +22,7 @@ class ImportRowController extends Controller
     public function data(Import $import)
     {
         $datatables = DataTables::of($import->importRows)
-            ->editColumn('check', function ($transaction) {
+            ->editColumn('check', function ($importRow) {
                 return view('import-rows.columns._check');
             })
             ->editColumn('action', function ($importRow) {
@@ -45,6 +45,9 @@ class ImportRowController extends Controller
         $importRow->delete();
     }
 
+    /**
+     * @param DestroyImportRowsRequest $request
+     */
     public function destroyMultiple(DestroyImportRowsRequest $request)
     {
         $importRowIds = $request->get('import-rows', []);
@@ -53,5 +56,18 @@ class ImportRowController extends Controller
         ImportRow::query()
             ->whereIn('id', $importRowIds)
             ->delete();
+    }
+
+    /**
+     * @param Import $import
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function overview(Import $import)
+    {
+        return view('import-rows.overview')
+            ->with([
+                'import'     => $import,
+                'importRows' => $import->importRows,
+            ]);
     }
 }
