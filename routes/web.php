@@ -13,3 +13,6 @@ Route::post('/import', 'ImportController@upload')
 
 Route::get('/import/{import}', 'ImportController@show')
     ->name('import.show');
+
+Route::get('/import/{import}/process', 'ImportController@process')
+    ->name('import.process');

@@ -2,12 +2,25 @@
 
 return [
     // import/index
-    'import'              => 'Import',
-    'import_file'         => 'Import file',
-    'choose_file'         => 'Choose file',
-    'upload'              => 'Upload',
+    'import'                 => 'Import',
+    'import_file'            => 'Import file',
+    'choose_file'            => 'Choose file',
+    'upload'                 => 'Upload',
 
     // import/show
-    'import_name'         => 'Import :name',
-    'file_upload_success' => 'File successfully uploaded.',
+    'process'                => 'Process',
+    'no_rows_process_now'    => 'No import rows, process now',
+    'import_rows'            => 'Import rows',
+    'import_name'            => 'Import :name',
+    'file_upload_success'    => 'File successfully uploaded.',
+
+    // import/process
+    'process_import_started' => 'Process import started',
+
+    // Model attributes
+    'id'                     => 'ID',
+    'name'                   => 'Name',
+    'file_name'              => 'File name',
+    'created_at'             => 'Created at',
+    'updated_at'             => 'Updated at',
 ];
