@@ -1,6 +1,9 @@
 <?php
 
 return [
+    // import/show
+    'delete_rows'    => 'Delete rows',
+
     // Model attributes
     'id'             => 'ID',
     'import_id'      => 'Import ID',

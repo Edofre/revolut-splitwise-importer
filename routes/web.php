@@ -22,3 +22,5 @@ Route::any('/import/{import}/rows/data/', 'ImportRowController@data')
 
 Route::delete('/import/rows/{importRow}/destroy', 'ImportRowController@destroy')
     ->name('import.rows.destroy');
+Route::delete('/import/rows/destroy', 'ImportRowController@destroyMultiple')
+    ->name('import.rows.destroy.multiple');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\DestroyImportRowsRequest;
 use App\Models\Import;
 use App\Models\ImportRow;
 use Yajra\DataTables\DataTables;
@@ -21,13 +22,16 @@ class ImportRowController extends Controller
     public function data(Import $import)
     {
         $datatables = DataTables::of($import->importRows)
+            ->editColumn('check', function ($transaction) {
+                return view('import-rows.columns._check');
+            })
             ->editColumn('action', function ($importRow) {
                 return view('import-rows.columns._action')
                     ->with([
                         'importRow' => $importRow,
                     ]);
             })
-            ->rawColumns(['action']);
+            ->rawColumns(['check', 'action']);
 
         return $datatables->make(true);
     }
@@ -39,5 +43,15 @@ class ImportRowController extends Controller
     public function destroy(ImportRow $importRow)
     {
         $importRow->delete();
+    }
+
+    public function destroyMultiple(DestroyImportRowsRequest $request)
+    {
+        $importRowIds = $request->get('import-rows', []);
+
+        // Delete ImportRow models
+        ImportRow::query()
+            ->whereIn('id', $importRowIds)
+            ->delete();
     }
 }
