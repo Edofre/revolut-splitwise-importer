@@ -44,8 +44,12 @@ class ImportController extends Controller
 
     public function show(Import $import)
     {
-        var_dump($import->getAttributes());
-        exit;
+        flash(__('import.file_upload_success'))->success()->important();
+
+        return view('import.show')
+            ->with([
+                'import' => $import,
+            ]);
     }
 
 }

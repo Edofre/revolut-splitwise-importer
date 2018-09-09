@@ -5,45 +5,21 @@
 @endsection
 
 @section('content')
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container">
-                <h1 class="title">
-                    <span class="icon">
-                        <i class="fas fa-file-import"></i>
-                    </span>
-                    &nbsp;{{ __('import.import_file') }}
-                </h1>
-            </div>
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-file-import"></i> {{ __('import.import_file') }}
         </div>
-    </section>
+        <div class="card-body">
 
-    <section class="section">
-        <div class="container">
-            <div class="field is-horizontal">
-                {!!  Form::open(['route' => 'import.upload', 'files' => true]) !!}
-                <div class="field-body">
-                    <div class="file">
-                        <label class="file-label">
-                            {!! Form::file('revolut-export', ['class' => 'file-input', 'accept' => '.csv']) !!}
-                            <span class="file-cta">
-                                <span class="file-icon">
-                                    <i class="fas fa-upload"></i>
-                                </span>
-                                <span class="file-label">{{ __('import.choose_file') }}</span>
-                            </span>
-                            <span class="file-name hide-on-load" data-file-name></span>
-                        </label>
-                    </div>
-                    <div class="field">
-                        <button class="button is-success" type="submit">{{ __('import.upload') }}</button>
-                    </div>
-                </div>
-                {!! Form::close() !!}
-            </div>
+            {!!  Form::open(['route' => 'import.upload', 'files' => true, 'class' => 'form-inline']) !!}
 
+            <label class="sr-only" for="revolut-export">{{ __('import.import_file') }}</label>
+            {!! Form::file('revolut-export', ['class' => 'form-control mb-2 mr-sm-2', 'accept' => '.csv']) !!}
+
+            <button type="submit" class="btn btn-primary mb-2">{{ __('import.upload') }}</button>
+            {!! Form::close() !!}
         </div>
-    </section>
+    </div>
 @endsection
 
 @push('styles')
@@ -51,14 +27,5 @@
 @endpush
 
 @push('scripts')
-    <script type="text/javascript">
-        $('input[type=file]').change(function (e) {
 
-            var fileName = e.target.files[0].name;
-            var element = $('[data-file-name]');
-
-            element.html(fileName);
-            element.show();
-        })
-    </script>
 @endpush

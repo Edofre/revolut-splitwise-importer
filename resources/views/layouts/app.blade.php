@@ -16,18 +16,31 @@
 </head>
 <body>
 
-@yield('content')
+<div id="app">
+    @include('layouts._nav')
 
-<footer class="footer">
-    <div class="content has-text-centered">
-        <p>
-            <strong>{{ env('APP_NAME') }}</strong> by <a href="{{ env('APP_AUTHOR_URL') }}" target="_blank">{{ env('APP_AUTHOR') }}<span class="icon"><i class="fas fa-code-branch"></i></span></a>.
-        </p>
-    </div>
-</footer>
+    <main class="py-4">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    @include('flash::message')
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row justify-content-center">
+                @yield('content')
+            </div>
+        </div>
+    </main>
+</div>
 
-<!-- javascript -->
+<!-- Javascript -->
 <script src="{{ asset('js/app.js') }}"></script>
+<!-- Hide the not import flash messages after 3 seconds -->
+<script>
+    $('div.alert').not('.alert-important').delay(3000).fadeOut(350);
+</script>
 <!-- Custom page scripts -->
 @stack('scripts')
 
