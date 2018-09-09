@@ -9,7 +9,7 @@ return [
 
     // import/show
     'process'                => 'Process',
-    'no_rows_process_now'    => 'No import rows, process now',
+    'no_rows_process_now'    => 'No import rows, click to process now',
     'import_rows'            => 'Import rows',
     'import_name'            => 'Import :name',
     'file_upload_success'    => 'File successfully uploaded.',

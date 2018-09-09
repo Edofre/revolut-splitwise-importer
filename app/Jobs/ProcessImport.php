@@ -30,6 +30,7 @@ class ProcessImport implements ShouldQueue
     const ROW_CATEGORY = 7;
     /** @var string */
     const CATEGORY_TRANSFERS = 'transfers';
+    const CATEGORY_CASH = 'cash';
     /** @var Import */
     private $import;
 
@@ -94,8 +95,8 @@ class ProcessImport implements ShouldQueue
             return true;
         }
 
-        // If it's a transfer (probably sent to Vault)
-        if ($line[self::ROW_CATEGORY] === self::CATEGORY_TRANSFERS) {
+        // If it's a transfer (probably sent to Vault), or cash category
+        if (in_array($line[self::ROW_CATEGORY], [self::CATEGORY_TRANSFERS, self::CATEGORY_CASH])) {
             return true;
         }
 

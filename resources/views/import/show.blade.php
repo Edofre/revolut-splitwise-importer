@@ -138,6 +138,9 @@
                             },
                             complete: function () {
                                 loader.hide(); // Hide the loader
+
+                                selected = [];
+                                $("[data-action='remove-rows']").addClass('disabled');
                             },
                             success: function (result) {
                                 // Refresh datatable
