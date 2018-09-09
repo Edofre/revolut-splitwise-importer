@@ -36,8 +36,6 @@ class CreateImportsTable extends Migration
 
             $table->timestamps();
         });
-
-
     }
 
     /**
