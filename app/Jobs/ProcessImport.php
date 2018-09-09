@@ -28,6 +28,8 @@ class ProcessImport implements ShouldQueue
     const ROW_EXCHANGE_IN = 5;
     const ROW_BALANCE = 6;
     const ROW_CATEGORY = 7;
+    /** @var string */
+    const CATEGORY_TRANSFERS = 'transfers';
     /** @var Import */
     private $import;
 
@@ -53,7 +55,7 @@ class ProcessImport implements ShouldQueue
             $lineCounter++;
 
             // Skip first line
-            if ($lineCounter === 1 || empty($line[self::ROW_PAID_OUT])) {
+            if ($this->shouldSkipRow($lineCounter, $line)) {
                 continue;
             }
 
@@ -73,5 +75,30 @@ class ProcessImport implements ShouldQueue
 
         }
         fclose($file);
+    }
+
+    /**
+     * @param $lineCount
+     * @param $line
+     * @return bool
+     */
+    private function shouldSkipRow($lineCount, $line)
+    {
+        // Skip the first line
+        if ($lineCount === 1) {
+            return true;
+        }
+
+        // If we don't have a paid out value
+        if (empty($line[self::ROW_PAID_OUT])) {
+            return true;
+        }
+
+        // If it's a transfer (probably sent to Vault)
+        if ($line[self::ROW_CATEGORY] === self::CATEGORY_TRANSFERS) {
+            return true;
+        }
+
+        return false;
     }
 }
