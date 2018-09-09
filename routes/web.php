@@ -10,3 +10,6 @@ Route::get('/', 'ImportController@index')
 
 Route::post('/import', 'ImportController@upload')
     ->name('import.upload');
+
+Route::get('/import/{import}', 'ImportController@show')
+    ->name('import.show');

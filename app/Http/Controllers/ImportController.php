@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\RevolutUploadRequest;
+use App\Models\Import;
 
 /**
  * Class ImportController
@@ -22,11 +23,29 @@ class ImportController extends Controller
 
     /**
      * @param RevolutUploadRequest $request
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function upload(RevolutUploadRequest $request)
     {
-        var_dump($request->all());
-        var_dump($request->file('revolut-export'));
+        $path = $request->file('revolut-export')->storeAs(
+            'exports', time() . '.csv'
+        );
+
+        $import = Import::create([
+            'name'      => $request->file('revolut-export')->getClientOriginalName(),
+            'file_name' => $path,
+
+        ]);
+
+        // TODO, flash user
+
+        return redirect()->route('import.show', ['import' => $import->id]);
+    }
+
+    public function show(Import $import)
+    {
+        var_dump($import->getAttributes());
+        exit;
     }
 
 }
