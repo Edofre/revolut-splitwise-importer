@@ -37,15 +37,13 @@ class ImportController extends Controller
 
         ]);
 
-        // TODO, flash user
+        flash(__('import.file_upload_success'))->success();
 
         return redirect()->route('import.show', ['import' => $import->id]);
     }
 
     public function show(Import $import)
     {
-        flash(__('import.file_upload_success'))->success()->important();
-
         return view('import.show')
             ->with([
                 'import' => $import,
