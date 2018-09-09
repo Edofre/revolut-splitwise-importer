@@ -4,11 +4,15 @@
 @import 'variables';
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+// DataTables
+@import "~datatables.net-bs4/css/dataTables.bootstrap4";
 // FontAwesome
 @import '~@fortawesome/fontawesome-free/scss/v4-shims';
 @import '~@fortawesome/fontawesome-free/scss/brands';
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
-// Utilities
+
+// App
+@import "datatables";
 @import 'utils';

@@ -13,6 +13,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- View defined styles -->
     @stack('styles')
+    <!-- Ziggy routes -->
+    @routes
 </head>
 <body>
 

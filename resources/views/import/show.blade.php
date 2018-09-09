@@ -44,7 +44,7 @@
                 <i class="fas fa-tasks"></i> {{ __('import.import_rows') }}
             </div>
             <div class="card-body">
-                @if($import->importRows->isEmpty())
+                @if($importRows->isEmpty())
                     <div class="form-row text-center">
                         <div class="col-12">
                             <a href="{{ route('import.process', ['import' => $import->id]) }}" class="btn btn-primary">
@@ -53,9 +53,21 @@
                         </div>
                     </div>
                 @else
-
-                    <?php var_dump($import->importRows); ?>
-
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-sm" data-datatable-import-rows width="100%" cellspacing="0">
+                            <thead>
+                            <tr>
+                                <th scope="col">{{ __('import-row.id') }}</th>
+                                <th scope="col">{{ __('import-row.completed_date') }}</th>
+                                <th scope="col">{{ __('import-row.reference') }}</th>
+                                <th scope="col">{{ __('import-row.paid_out') }}</th>
+                                <th scope="col">{{ __('import-row.category') }}</th>
+                                <th scope="col">&nbsp;</th>
+                            </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+                    </div>
                 @endif
             </div>
         </div>
@@ -68,5 +80,23 @@
 @endpush
 
 @push('scripts')
+    @if($importRows->isNotEmpty())
+        <script type="text/javascript">
+            $('[data-datatable-import-rows]').DataTable({
+                ajax: {
+                    url: route('import.rows.data', ['{{ $import->id }}'])
+                },
+                paging: false,
+                columns: [
+                    {data: 'id', name: 'id'},
+                    {data: 'completed_date', name: 'completed_date'},
+                    {data: 'reference', name: 'reference'},
+                    {data: 'paid_out', name: 'paid_out'},
+                    {data: 'category', name: 'category'},
+                    {data: 'action', name: 'action', searchable: false, orderable: false}
+                ]
+            });
+        </script>
+    @endif
 
 @endpush

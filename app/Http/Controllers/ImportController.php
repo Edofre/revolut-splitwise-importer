@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\RevolutUploadRequest;
 use App\Jobs\ProcessImport;
 use App\Models\Import;
+use Yajra\DataTables\DataTables;
 
 /**
  * Class ImportController
@@ -51,8 +52,29 @@ class ImportController extends Controller
     {
         return view('import.show')
             ->with([
-                'import' => $import,
+                'import'     => $import,
+                'importRows' => $import->importRows,
             ]);
+    }
+
+
+    /**
+     * @param Import $import
+     * @return mixed
+     * @throws \Exception
+     */
+    public function importRowData(Import $import)
+    {
+        $datatables = DataTables::of($import->importRows)
+            ->editColumn('action', function ($importRow) {
+                return view('import-rows.columns._action')
+                    ->with([
+                        'importRow' => $importRow,
+                    ]);
+            })
+            ->rawColumns(['action']);
+
+        return $datatables->make(true);
     }
 
     /**
