@@ -77,7 +77,10 @@ class ImportRowController extends Controller
      */
     public function send(SendImportRowsRequest $request)
     {
-        var_dump($request->all());
-        exit;
+        $importRows = $request->get('import-rows');
+
+        // Send rows as batch or 1 by 1?
+
+
     }
 }
