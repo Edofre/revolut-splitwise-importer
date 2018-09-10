@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Carbon\Carbon|null                                              $created_at
  * @property \Carbon\Carbon|null                                              $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection|\App\Models\Import $import
- * @property-read string $splitwiseReference
+ * @property-read string                                                      $splitwiseReference
  */
 class ImportRow extends Model
 {
@@ -53,12 +53,9 @@ class ImportRow extends Model
     /**
      * @return string
      */
-    public function getSplitwiseReferenceAttribute() {
-        var_dump($this->reference);
-        var_dump($this->completed_date);
-
-
-        exit;
+    public function getSplitwiseReferenceAttribute()
+    {
+        return "{$this->reference} {$this->completed_date->format('d-m-Y')}";
     }
 
     /**

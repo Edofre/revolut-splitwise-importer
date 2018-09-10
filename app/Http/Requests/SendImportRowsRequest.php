@@ -15,7 +15,7 @@ class SendImportRowsRequest extends Request
     public function rules()
     {
         return [
-            'import-rows' => 'required',
+//            'import-rows' => 'required',
         ];
     }
 }

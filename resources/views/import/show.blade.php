@@ -9,7 +9,6 @@
         <div class="card mb-3">
             <div class="card-header">
                 <i class="fas fa-file-import"></i> {{ $import->name }}
-
                 <div class="pull-right">
                     <a href="{{ route('import.rows.overview', ['import' => $import->id]) }}" class="btn btn-sm btn-success">
                         <i class="fas fa-share-square"></i> {{ __('import.rows_overview') }}
@@ -40,7 +39,6 @@
             </div>
         </div>
     </div>
-
 
     @if($importRows->isEmpty())
         <div class="col-md-10">
@@ -186,9 +184,6 @@
                     $(this).removeClass('selected');
                 }
             });
-
-
         </script>
     @endif
-
 @endpush
