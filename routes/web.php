@@ -32,4 +32,6 @@ Route::group(['as' => 'import.'], function () {
     // Rows overview
     Route::get('/import/{import}/rows/overview', 'ImportRowController@overview')
         ->name('rows.overview');
+    Route::post('import/{import}/rows', 'ImportRowController@send')
+        ->name('rows.send');
 });

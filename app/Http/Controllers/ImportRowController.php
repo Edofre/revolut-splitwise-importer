@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\DestroyImportRowsRequest;
+use App\Http\Requests\SendImportRowsRequest;
 use App\Models\Import;
 use App\Models\ImportRow;
 use Yajra\DataTables\DataTables;
@@ -69,5 +70,14 @@ class ImportRowController extends Controller
                 'import'     => $import,
                 'importRows' => $import->importRows,
             ]);
+    }
+
+    /**
+     * @param SendImportRowsRequest $request
+     */
+    public function send(SendImportRowsRequest $request)
+    {
+        var_dump($request->all());
+        exit;
     }
 }
