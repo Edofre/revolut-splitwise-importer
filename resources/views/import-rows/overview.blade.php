@@ -29,26 +29,20 @@
 @endpush
 
 @push('scripts')
-<script type="text/javascript">
-    $(document).on('click', "[data-remove-row-id]", function () {
-
-        var id = $(this).data('remove-row-id');
-
-        console.log(id);
-
-        $('[data-row-id="'+id+'"]').remove();
-
-        // $.ajax({
-        //     headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
-        //     url: route('import.rows.destroy'),
-        //     type: 'DELETE',
-        //     data: {
-        //         'importRow': importRow,
-        //     },
-        //     success: function (result) {
-        //         // Remove the row
-        //     }
-        // });
-    });
-</script>
+    <script type="text/javascript">
+        $(document).on('click', "[data-remove-row-id]", function () {
+            // Fetch the id of the row we just clicked
+            var id = $(this).data('remove-row-id');
+            // Properly remove it
+            $.ajax({
+                headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')},
+                url: route('import.rows.destroy', [id]),
+                type: 'DELETE',
+                success: function () {
+                    // Remove the row
+                    $('[data-row-id="' + id + '"]').remove();
+                }
+            });
+        });
+    </script>
 @endpush
