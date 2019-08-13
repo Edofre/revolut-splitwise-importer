@@ -1,4 +1,6 @@
-#
+# NOTE:
+
+Not finished, not using revolut anymore 🤷‍♂️
 
 # Installation
 
